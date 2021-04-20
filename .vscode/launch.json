@@ -8,6 +8,24 @@
             "name": "flutter_nlw_5",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "name": "Android",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "SM N9600"
+        },
+        {
+            "name": "Web",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "Chrome"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "All Devices",
+            "configurations": ["flutter_nlw_5", "Android", "Web"]
         }
     ]
 }
