@@ -1,4 +1,4 @@
-[![CI](https://github.com/Matteuus/flutter_nlw_5/actions/workflows/dart.yml/badge.svg)](https://github.com/Matteuus/flutter_nlw_5/actions/workflows/dart.yml)]
+[![CI](https://github.com/Matteuus/flutter_nlw_5/actions/workflows/dart.yml/badge.svg)](https://github.com/Matteuus/flutter_nlw_5/actions/workflows/dart.yml)
 
 # flutter_nlw_5
 
