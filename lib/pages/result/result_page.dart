@@ -1,5 +1,5 @@
-import 'package:dev_quiz/challenge/widgets/next_button/next_button_widget.dart';
 import 'package:dev_quiz/core/core.dart';
+import 'package:dev_quiz/pages/challenge/widgets/next_button/next_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 

@@ -1,15 +1,15 @@
+import 'package:dev_quiz/store/home/home_state.dart';
 import 'package:dev_quiz/shared/models/quiz_model.dart';
-import 'package:dev_quiz/home/home_state.dart';
 import 'package:dev_quiz/shared/models/user_model.dart';
-import 'package:dev_quiz/home/home_controller.dart';
+import 'package:dev_quiz/store/home/home_store.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  HomeController controller = HomeController();
 
   group("HomeController", () {
     test("test function getUser", () {
+      final HomeStore controller = HomeStore();
       expect(controller.user, null);
 
       controller.getUser();
@@ -19,6 +19,7 @@ void main() {
       }
     });
     test("test function getQuizzes", () {
+      final HomeStore controller = HomeStore();
       expect(controller.quizzes, null);
 
       controller.getQuizzes();

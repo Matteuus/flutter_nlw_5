@@ -1,9 +1,9 @@
 import 'dart:core';
-import 'package:dev_quiz/challenge/challenge_controler.dart';
-import 'package:dev_quiz/challenge/widgets/next_button/next_button_widget.dart';
-import 'package:dev_quiz/challenge/widgets/question_indicator/question_indicator_widget.dart';
-import 'package:dev_quiz/challenge/widgets/quiz/quiz_widget.dart';
-import 'package:dev_quiz/result/result_page.dart';
+import 'package:dev_quiz/pages/challenge/challenge_controler.dart';
+import 'package:dev_quiz/pages/challenge/widgets/next_button/next_button_widget.dart';
+import 'package:dev_quiz/pages/challenge/widgets/question_indicator/question_indicator_widget.dart';
+import 'package:dev_quiz/pages/challenge/widgets/quiz/quiz_widget.dart';
+import 'package:dev_quiz/pages/result/result_page.dart';
 import 'package:dev_quiz/shared/models/question_model.dart';
 import 'package:flutter/material.dart';
 

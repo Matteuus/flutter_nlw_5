@@ -1,5 +1,5 @@
 import 'package:dev_quiz/core/core.dart';
-import 'package:dev_quiz/home/widgets/score_card/score_card_widget.dart';
+import 'package:dev_quiz/pages/home/widgets/score_card/score_card_widget.dart';
 import 'package:dev_quiz/shared/models/user_model.dart';
 import 'package:flutter/widgets.dart';
 

@@ -1,21 +1,32 @@
-import 'package:dev_quiz/home/home_repository.dart';
-import 'package:dev_quiz/home/home_state.dart';
+import 'package:dev_quiz/pages/home/home_repository.dart';
 import 'package:dev_quiz/shared/models/quiz_model.dart';
 import 'package:dev_quiz/shared/models/user_model.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dev_quiz/store/home/home_state.dart';
+import 'package:mobx/mobx.dart';
+part 'home_store.g.dart';
 
-class HomeController {
-  ValueNotifier<HomeState> stateNotifier =
-      ValueNotifier<HomeState>(HomeState.empty);
-  set state(HomeState state) => stateNotifier.value = state;
-  HomeState get state => stateNotifier.value;
+class HomeStore = _HomeStoreBase with _$HomeStore;
 
+abstract class _HomeStoreBase with Store {
+  _HomeStoreBase() {
+    getUser();
+    getQuizzes();
+  }
+
+  @observable
+  HomeState state = HomeState.empty;
+
+  @observable
   UserModel? user;
+
+  @observable
   List<QuizModel>? quizzes;
 
-  final repository = HomeRepository();
+  @observable
+  HomeRepository repository = HomeRepository();
 
-  void getUser() async {
+  @action
+  getUser() async {
     state = HomeState.loading;
     try {
       user = await repository.getUser();
@@ -26,7 +37,8 @@ class HomeController {
     }
   }
 
-  void getQuizzes() async {
+  @action
+  getQuizzes() async {
     state = HomeState.loading;
     try {
       quizzes = await repository.getQuizzes();
