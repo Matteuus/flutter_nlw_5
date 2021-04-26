@@ -1,11 +1,14 @@
 import 'dart:core';
-import 'package:dev_quiz/pages/challenge/challenge_controler.dart';
 import 'package:dev_quiz/pages/challenge/widgets/next_button/next_button_widget.dart';
 import 'package:dev_quiz/pages/challenge/widgets/question_indicator/question_indicator_widget.dart';
 import 'package:dev_quiz/pages/challenge/widgets/quiz/quiz_widget.dart';
 import 'package:dev_quiz/pages/result/result_page.dart';
 import 'package:dev_quiz/shared/models/question_model.dart';
+import 'package:dev_quiz/store/challenge/challenge_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+
+final controller = ChallengeStore();
 
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
@@ -18,7 +21,6 @@ class ChallengePage extends StatefulWidget {
 }
 
 class _ChallengePageState extends State<ChallengePage> {
-  final controller = ChallengeController();
   final pageController = PageController();
 
   @override
@@ -58,12 +60,12 @@ class _ChallengePageState extends State<ChallengePage> {
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-              ValueListenableBuilder<int>(
-                valueListenable: controller.currentPageNotifier,
-                builder: (context, value, _) => QuestionIndicatorWidget(
-                  currentPage: value,
-                  length: widget.questions.length,
-                ),
+              Observer(
+                builder: (_) {
+                  return QuestionIndicatorWidget(
+                      currentPage: controller.currentPage,
+                      length: widget.questions.length);
+                },
               ),
             ],
           ),
@@ -86,18 +88,17 @@ class _ChallengePageState extends State<ChallengePage> {
         minimum: EdgeInsets.only(bottom: 6),
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: ValueListenableBuilder(
-                valueListenable: controller.currentPageNotifier,
-                builder: (context, value, _) => Row(
+            child: Observer(
+                builder: (_) => Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        if (value != widget.questions.length)
+                        if (controller.currentPage != widget.questions.length)
                           Expanded(
                               child: NextButtonWidget.white(
                             label: "Pular",
                             onTap: nextPage,
                           )),
-                        if (value == widget.questions.length)
+                        if (controller.currentPage == widget.questions.length)
                           Expanded(
                             child: NextButtonWidget.green(
                               label: "Concluir",

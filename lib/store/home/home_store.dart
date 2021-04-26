@@ -1,4 +1,4 @@
-import 'package:dev_quiz/pages/home/home_repository.dart';
+import 'package:dev_quiz/repository/home/home_repository.dart';
 import 'package:dev_quiz/shared/models/quiz_model.dart';
 import 'package:dev_quiz/shared/models/user_model.dart';
 import 'package:dev_quiz/store/home/home_state.dart';

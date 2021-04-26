@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group("HomeController", () {
+  group("HomeStore", () {
     test("test function getUser", () {
       final HomeStore controller = HomeStore();
       expect(controller.user, null);
