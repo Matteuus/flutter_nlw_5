@@ -14,4 +14,10 @@ abstract class _ChallengeStoreBase with Store {
   setCurrentPage(int value) {
     currentPage = value;
   }
+
+  @action
+  finishChallenge() {
+    currentPage = 0;
+    correctAwnsers = 0;
+  }
 }

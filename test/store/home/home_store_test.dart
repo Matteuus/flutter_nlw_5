@@ -1,4 +1,3 @@
-import 'package:dev_quiz/store/home/home_state.dart';
 import 'package:dev_quiz/shared/models/quiz_model.dart';
 import 'package:dev_quiz/shared/models/user_model.dart';
 import 'package:dev_quiz/store/home/home_store.dart';
@@ -14,7 +13,7 @@ void main() {
 
       controller.getUser();
 
-      if (controller.state == HomeState.success) {
+      if (controller.user != null) {
         expect(controller.user, isA<UserModel>());
       }
     });
@@ -24,7 +23,7 @@ void main() {
 
       controller.getQuizzes();
 
-      if (controller.state == HomeState.success) {
+      if (controller.quizzes != null) {
         expect(controller.quizzes, isA<QuizModel>());
       }
     });

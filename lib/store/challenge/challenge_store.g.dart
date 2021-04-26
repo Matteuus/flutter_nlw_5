@@ -54,6 +54,17 @@ mixin _$ChallengeStore on _ChallengeStoreBase, Store {
   }
 
   @override
+  dynamic finishChallenge() {
+    final _$actionInfo = _$_ChallengeStoreBaseActionController.startAction(
+        name: '_ChallengeStoreBase.finishChallenge');
+    try {
+      return super.finishChallenge();
+    } finally {
+      _$_ChallengeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 currentPage: ${currentPage},

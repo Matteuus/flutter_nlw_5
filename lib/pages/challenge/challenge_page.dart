@@ -34,7 +34,7 @@ class _ChallengePageState extends State<ChallengePage> {
   void nextPage() {
     if (controller.currentPage < widget.questions.length) {
       pageController.nextPage(
-          duration: Duration(milliseconds: 250), curve: Curves.linear);
+          duration: Duration(milliseconds: 200), curve: Curves.linear);
     }
   }
 
@@ -110,7 +110,9 @@ class _ChallengePageState extends State<ChallengePage> {
                                               title: widget.title,
                                               length: widget.questions.length,
                                               result: controller.correctAwnsers,
-                                            )));
+                                            ))).then((_) {
+                                  controller.finishChallenge();
+                                });
                               },
                             ),
                           )
