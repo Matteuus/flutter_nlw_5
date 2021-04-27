@@ -5,7 +5,7 @@ class ChallengeStore = _ChallengeStoreBase with _$ChallengeStore;
 
 abstract class _ChallengeStoreBase with Store {
   @observable
-  int currentPage = 0;
+  int currentPage = 1;
 
   @observable
   int correctAwnsers = 0;

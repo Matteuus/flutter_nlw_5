@@ -1,3 +1,4 @@
+import 'package:dev_quiz/api/api.dart';
 import 'package:dev_quiz/repository/home/home_repository.dart';
 import 'package:dev_quiz/shared/models/quiz_model.dart';
 import 'package:dev_quiz/shared/models/user_model.dart';
@@ -24,7 +25,7 @@ abstract class _HomeStoreBase with Store {
   @action
   getUser() async {
     try {
-      user = await repository.getUser();
+      user = await repository.getUser(Api.dio);
     } catch (Exception) {
       print(Exception);
     }
@@ -33,7 +34,7 @@ abstract class _HomeStoreBase with Store {
   @action
   getQuizzes() async {
     try {
-      quizzes = await repository.getQuizzes();
+      quizzes = await repository.getQuizzes(Api.dio);
     } catch (Exception) {
       print(Exception);
     }
