@@ -11,13 +11,17 @@ abstract class _HomeStoreBase with Store {
   _HomeStoreBase() {
     getUser();
     getQuizzes();
+    quizzesNivel = ObservableList();
   }
 
   @observable
   UserModel? user;
 
   @observable
-  List<QuizModel>? quizzes;
+  ObservableList<QuizModel>? quizzes;
+
+  @observable
+  ObservableList<QuizModel>? quizzesNivel;
 
   @observable
   HomeRepository repository = HomeRepository();
@@ -35,6 +39,28 @@ abstract class _HomeStoreBase with Store {
   getQuizzes() async {
     try {
       quizzes = await repository.getQuizzes(Api.dio);
+    } catch (Exception) {
+      print(Exception);
+    }
+  }
+
+  @action
+  getQuizzesNivel(String nivel) async {
+    try {
+      if (quizzesNivel!.isNotEmpty) {
+        quizzesNivel!.forEach((element) {
+          if (element.level.parse == nivel) {
+            quizzesNivel!.clear();
+            return;
+          }
+        });
+        quizzesNivel!.clear();
+      }
+      if (quizzes != null) {
+        quizzes!.forEach((element) {
+          if (element.level.parse == nivel) quizzesNivel!.add(element);
+        });
+      }
     } catch (Exception) {
       print(Exception);
     }

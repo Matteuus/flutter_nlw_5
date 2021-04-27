@@ -42,15 +42,27 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     LevelButtonWidget(
                       label: "Fácil",
+                      onTap: () {
+                        controller.getQuizzesNivel("facil");
+                      },
                     ),
                     LevelButtonWidget(
                       label: "Médio",
+                      onTap: () {
+                        controller.getQuizzesNivel("medio");
+                      },
                     ),
                     LevelButtonWidget(
                       label: "Difícil",
+                      onTap: () {
+                        controller.getQuizzesNivel("dificil");
+                      },
                     ),
                     LevelButtonWidget(
                       label: "Perito",
+                      onTap: () {
+                        controller.getQuizzesNivel("perito");
+                      },
                     ),
                   ],
                 ),
@@ -62,23 +74,43 @@ class _HomePageState extends State<HomePage> {
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                     crossAxisCount: 2,
-                    children: controller.quizzes!
-                        .map((e) => QuizCardWidget(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ChallengePage(
-                                              questions: e.questions,
-                                              title: e.title,
-                                            )));
-                              },
-                              title: e.title,
-                              percent: e.questionAnswered / e.questions.length,
-                              completed:
-                                  "${e.questionAnswered}/${e.questions.length}",
-                            ))
-                        .toList(),
+                    children: controller.quizzesNivel!.isEmpty
+                        ? controller.quizzes!
+                            .map((e) => QuizCardWidget(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ChallengePage(
+                                                  questions: e.questions,
+                                                  title: e.title,
+                                                )));
+                                  },
+                                  title: e.title,
+                                  percent:
+                                      e.questionAnswered / e.questions.length,
+                                  completed:
+                                      "${e.questionAnswered}/${e.questions.length}",
+                                ))
+                            .toList()
+                        : controller.quizzesNivel!
+                            .map((e) => QuizCardWidget(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ChallengePage(
+                                                  questions: e.questions,
+                                                  title: e.title,
+                                                )));
+                                  },
+                                  title: e.title,
+                                  percent:
+                                      e.questionAnswered / e.questions.length,
+                                  completed:
+                                      "${e.questionAnswered}/${e.questions.length}",
+                                ))
+                            .toList(),
                   ),
                 )
               ],

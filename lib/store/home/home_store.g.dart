@@ -27,15 +27,30 @@ mixin _$HomeStore on _HomeStoreBase, Store {
   final _$quizzesAtom = Atom(name: '_HomeStoreBase.quizzes');
 
   @override
-  List<QuizModel>? get quizzes {
+  ObservableList<QuizModel>? get quizzes {
     _$quizzesAtom.reportRead();
     return super.quizzes;
   }
 
   @override
-  set quizzes(List<QuizModel>? value) {
+  set quizzes(ObservableList<QuizModel>? value) {
     _$quizzesAtom.reportWrite(value, super.quizzes, () {
       super.quizzes = value;
+    });
+  }
+
+  final _$quizzesNivelAtom = Atom(name: '_HomeStoreBase.quizzesNivel');
+
+  @override
+  ObservableList<QuizModel>? get quizzesNivel {
+    _$quizzesNivelAtom.reportRead();
+    return super.quizzesNivel;
+  }
+
+  @override
+  set quizzesNivel(ObservableList<QuizModel>? value) {
+    _$quizzesNivelAtom.reportWrite(value, super.quizzesNivel, () {
+      super.quizzesNivel = value;
     });
   }
 
@@ -68,11 +83,20 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     return _$getQuizzesAsyncAction.run(() => super.getQuizzes());
   }
 
+  final _$getQuizzesNivelAsyncAction =
+      AsyncAction('_HomeStoreBase.getQuizzesNivel');
+
+  @override
+  Future getQuizzesNivel(String nivel) {
+    return _$getQuizzesNivelAsyncAction.run(() => super.getQuizzesNivel(nivel));
+  }
+
   @override
   String toString() {
     return '''
 user: ${user},
 quizzes: ${quizzes},
+quizzesNivel: ${quizzesNivel},
 repository: ${repository}
     ''';
   }
